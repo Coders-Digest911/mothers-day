@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+    <title>Spin-off of "Processing.JS inside Webpages: Template"</title> 
+    <style>
+        #mycanvas {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+ <body>
+    <p align="center"> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+
+var speed = 1;
+var time = 0;
+var font = createFont("Comic Sans MS");
+var zip = function(x, y, col){
+   this.x = x;
+   this.y = y;
+   this.col = col;
+};
+
+zip.prototype.display = function(){
+    pushMatrix();
+  
+    translate(this.x, this.y);
+     stroke(this.col);
+     strokeWeight(10);
+    line(this.x, this.y, this.x + 250, this.y + 250);
+    line(this.x-50, this.y-50, this.x + 300, this.y + 300);
+      line(this.x-100, this.y-100, this.x + 350, this.y + 350);
+    popMatrix();
+};
+zip.prototype.move = function(){
+    this.x+= speed;
+    this.y+=speed;
+};
+zip.prototype.rebirth = function(){
+    if(this.x > 400){
+        this.x -= 600;
+        this.y -= 600;
+    }
+};
+var zips = [new zip(100, 100, color(255, 0, 0)),];
+for(var i = 0; i < 700; i++){
+   zips.push(new zip(random(0, 350), random(0, 350), color(random(0, 255), random(0, 255), random(0, 255))));
+}
+for(var c = 0; c < 700; c++){
+   zips.push(new zip(random(-250, 100), random(-250, 100), color(random(0, 255), random(0, 255), random(0, 255))));
+}
+
+draw = function() {
+    
+    background(255, 255, 255);
+    for(var i = 0; i < zips.length; i++){
+        zips[i].display();
+        zips[i].move();
+        zips[i].rebirth();
+    }
+    noStroke();
+    fill(121, 121, 121,170);
+    rect(10, 25, 380, 50);
+    fill(0, 196, 255);
+    textAlign(CENTER, CENTER);
+    textFont(font, 30);
+    
+    text("HAPPY MOTHER'S DAY!!!", 200, 50);
+};
+
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
