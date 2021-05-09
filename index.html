@@ -7,6 +7,9 @@ https://github.com/Team-Code/KA_Offline -->
     <style>
     body {
         overflow: hidden;
+        position: absolute;
+        top: -30px;
+        left: -10px;
     }
         #mycanvas {
             display: block;
@@ -33,7 +36,7 @@ https://github.com/Team-Code/KA_Offline -->
  <script>
     var sketchProc = function(processingInstance) {
      with (processingInstance) {
-        size(600, 400); 
+        size(700, 400); 
         frameRate(30);
         
         // ProgramCodeGoesHere
@@ -57,6 +60,8 @@ zip.prototype.display = function(){
     line(this.x, this.y, this.x + 250, this.y + 250);
     line(this.x-50, this.y-50, this.x + 300, this.y + 300);
       line(this.x-100, this.y-100, this.x + 350, this.y + 350);
+      line(this.x+100, this.y+100, this.x+150, this.y+150);
+      line(this.x+200, this.y+200, this.x+250, this.y+250);
     popMatrix();
 };
 zip.prototype.move = function(){
@@ -71,10 +76,10 @@ zip.prototype.rebirth = function(){
 };
 var zips = [new zip(100, 100, color(255, 0, 0)),];
 for(var i = 0; i < 700; i++){
-   zips.push(new zip(random(0, 350), random(0, 350), color(random(0, 255), random(0, 255), random(0, 255))));
+   zips.push(new zip(random(0, 450), random(0, 450), color(random(0, 255), random(0, 255), random(0, 255))));
 }
-for(var c = 0; c < 700; c++){
-   zips.push(new zip(random(-250, 100), random(-250, 100), color(random(0, 255), random(0, 255), random(0, 255))));
+for(var c = 0; c < 800; c++){
+   zips.push(new zip(random(-350, 200), random(-250, 100), color(random(0, 255), random(0, 255), random(0, 255))));
 }
 
 draw = function() {
@@ -87,12 +92,12 @@ draw = function() {
     }
     noStroke();
     fill(121, 121, 121,170);
-    rect(10, 25, 580, 50);
+    rect(10, 20, 675, 60);
     fill(250, 208, 291);
     textAlign(CENTER, CENTER);
-    textFont(font, 45);
+    textFont(font, 55);
     
-    text("HAPPY MOTHER'S DAY!!!", 300, 50);
+    text("HAPPY MOTHER'S DAY!!!", 350, 50);
 };
 
     }};
